@@ -52,8 +52,16 @@ var cible = {
 }
 
 var platform = {
-    x: 200,
+    x: 500,
     y: baseHeight - 100,
+    w: 200,
+    h: 20,
+    color: "brown"
+}
+
+var platform2 = {
+    x: 1000,
+    y: baseHeight - 200,
     w: 200,
     h: 20,
     color: "brown"
@@ -78,6 +86,7 @@ function drawCible() {
 function drawPlatform() {
     ctx.fillStyle = joueur.color
     ctx.fillRect(platform.x, platform.y, platform.w, platform.h)
+    ctx.fillRect(platform2.x, platform2.y, platform2.w, platform2.h)
 }
 
 
@@ -117,22 +126,32 @@ function animatePlayer() {
 function applyGravity() {
     joueur.velocityY += gravity;
     joueur.y += joueur.velocityY;
+
+    // Touches ground
     if (joueur.y + joueur.h > baseHeight) {
         joueur.y = baseHeight - joueur.h;
         joueur.velocityY = 0;
         jumped = false;
         doubleJumped = false;
-        }
+
+        console.log("Ground touched")
+    }
 }
 
 var jumped = false;
 var doubleJumped = false;
-
 function doubleJump() {
-    if ((32 in keyDown ) && !jumped) {
-        console.log("Player jumped!");
-        if (!doubleJumped && 87 in keyDown) {
-            joueur.velocityY = -22;
+    if (87 in keyDown && !jumped) {
+        console.log("Player jumped");
+        joueur.velocityY = -12;
+        jumped = true;
+    } else if (32 in keyDown && !jumped) {
+        joueur.velocityY = -12;
+        jumped = true;}
+    if ((32 in keyDown ) && jumped) {
+        if (!doubleJumped) {
+            console.log("Player superjumped");
+            joueur.velocityY = -15;
             doubleJumped = true;
         }
         jumped = true;
@@ -155,9 +174,9 @@ function clavier() {
     if (32 in keyDown  && joueur.y + joueur.h >= baseHeight) {
         joueur.velocityY = -12;
     }
-    if (87 in keyDown  && joueur.y + joueur.h >= baseHeight) {
-        joueur.velocityY = -12;
-    }
+    // if (87 in keyDown  && joueur.y + joueur.h >= baseHeight) {
+    //     joueur.velocityY = -12;
+    // }
 }
 
 function collision(a, b) {
@@ -172,6 +191,22 @@ function checkCollision() {
     if (collision(joueur, cible)) {
         joueur.x = 10
         joueur.y = canvas.height / 2 - 50
+    }
+
+    if (collision(joueur, platform)) {
+        joueur.y = platform.y - joueur.h;
+        joueur.velocityY = 0;
+        jumped = false;
+        doubleJumped = false;
+        console.log("Platform touched")
+    }
+
+    if (collision(joueur, platform2)) {
+        joueur.y = platform2.y - joueur.h;
+        joueur.velocityY = 0;
+        jumped = false;
+        doubleJumped = false;
+        console.log("Platform2 touched")
     }
 }
 
