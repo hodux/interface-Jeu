@@ -72,6 +72,30 @@ var keyDown = {}
 var ImgJoueur = new Image()
 ImgJoueur.src = player
 
+function Murs(x, y, width, height, color, speed) {
+    this.x = x
+    this.y = y
+    this.w = width
+    this.h = height
+    this.color = color
+    this.speed = speed
+    this.draw = function () {
+        ctx.fillStyle = this.color
+        ctx.fillRect(this.x, this.y, this.w, this.h)
+        if (this.y < 0 || this.y + this.h > canvas.height) {
+            this.speed = -this.speed
+        }
+
+        this.y += this.speed
+
+    }
+}
+
+var mur1 = new Murs(200, 0, 300, 50, "pink", 3)
+
+function drawMur() {
+    mur1.draw()
+}
 
 function drawJoueur() {
     ctx.fillStyle = joueur.color
@@ -84,7 +108,7 @@ function drawCible() {
 }
 
 function drawPlatform() {
-    ctx.fillStyle = joueur.color
+    ctx.fillStyle = platform.color
     ctx.fillRect(platform.x, platform.y, platform.w, platform.h)
     ctx.fillRect(platform2.x, platform2.y, platform2.w, platform2.h)
 }
@@ -147,8 +171,9 @@ function doubleJump() {
         jumped = true;
     } else if (32 in keyDown && !jumped) {
         joueur.velocityY = -12;
-        jumped = true;}
-    if ((32 in keyDown ) && jumped) {
+        jumped = true;
+    }
+    if ((32 in keyDown) && jumped) {
         if (!doubleJumped) {
             console.log("Player superjumped");
             joueur.velocityY = -15;
@@ -159,11 +184,11 @@ function doubleJump() {
 }
 
 var canDash = true;
- 
+
 function resetDash() {
     canDash = true;
 }
- 
+
 function dashMove() {
     if (keyDown[16] && canDash && keyDown[65]) {
         console.log("Dash attemp")
@@ -172,11 +197,11 @@ function dashMove() {
                 joueur.x -= 30;
             }
         }
- 
+
         for (let i = 0; i < 6; i++) {
             setTimeout(movePlayer, i * 25);
         }
- 
+
         canDash = false;
         setTimeout(resetDash, 3000);
     } else if (keyDown[16] && canDash && keyDown[68]) {
@@ -186,11 +211,11 @@ function dashMove() {
                 joueur.x += 30;
             }
         }
- 
+
         for (let i = 0; i < 6; i++) {
             setTimeout(movePlayer, i * 25);
         }
- 
+
         canDash = false;
         setTimeout(resetDash, 3000);
     }
@@ -205,7 +230,7 @@ function clavier() {
         joueur.x += joueur.speed;
     }
     // Espace ou W pour sauter
-    if (32 in keyDown  && joueur.y + joueur.h >= baseHeight) {
+    if (32 in keyDown && joueur.y + joueur.h >= baseHeight) {
         joueur.velocityY = -12;
     }
     // if (87 in keyDown  && joueur.y + joueur.h >= baseHeight) {
@@ -222,7 +247,8 @@ function collision(a, b) {
 }
 
 function checkCollision() {
-    if (collision(joueur, cible)) {
+    if (collision(joueur, cible) ||
+        collision(joueur, mur1)) {
         joueur.x = 10
         joueur.y = canvas.height / 2 - 50
     }
@@ -249,6 +275,7 @@ function game() {
     drawJoueur();
     drawCible();
     drawPlatform();
+    drawMur();
     clavier();
     applyGravity();
     checkCollision();
