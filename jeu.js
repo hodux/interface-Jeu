@@ -158,8 +158,42 @@ function doubleJump() {
     }
 }
 
+var canDash = true;
+ 
+function resetDash() {
+    canDash = true;
+}
+ 
 function dashMove() {
-    
+    if (keyDown[16] && canDash && keyDown[65]) {
+        console.log("Dash attemp")
+        function movePlayer() {
+            if (joueur.x > 0) {
+                joueur.x -= 30;
+            }
+        }
+ 
+        for (let i = 0; i < 6; i++) {
+            setTimeout(movePlayer, i * 25);
+        }
+ 
+        canDash = false;
+        setTimeout(resetDash, 3000);
+    } else if (keyDown[16] && canDash && keyDown[68]) {
+        console.log("Dash attemp")
+        function movePlayer() {
+            if (joueur.x < canvas.width - joueur.w) {
+                joueur.x += 30;
+            }
+        }
+ 
+        for (let i = 0; i < 6; i++) {
+            setTimeout(movePlayer, i * 25);
+        }
+ 
+        canDash = false;
+        setTimeout(resetDash, 3000);
+    }
 }
 
 
@@ -220,6 +254,7 @@ function game() {
     checkCollision();
     animatePlayer();
     doubleJump();
+    dashMove();
     requestAnimationFrame(game);
 }
 
