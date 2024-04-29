@@ -3,3 +3,4 @@ _En cadre avec le cours d'interfaces humain machines pour **Création d'un jeu a
 
 - Signifiants - i18n
 - Full maquette sur fiche Figma.
+[<img src="plan-figma.png">]
