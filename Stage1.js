@@ -151,7 +151,6 @@ function applyGravity() {
     joueur.velocityY += gravity;
     joueur.y += joueur.velocityY;
 
-    // Touches ground
     if (joueur.y + joueur.h > baseHeight) {
         joueur.y = baseHeight - joueur.h;
         joueur.velocityY = 0;
@@ -247,10 +246,13 @@ function collision(a, b) {
 }
 
 function checkCollision() {
-    if (collision(joueur, cible) ||
-        collision(joueur, mur1)) {
+    if (collision(joueur, mur1)) {
         joueur.x = 10
         joueur.y = canvas.height / 2 - 50
+    }
+
+    if (collision(joueur, cible)) {
+        window.location.href="Stage2.html"
     }
 
     if (collision(joueur, platform)) {
