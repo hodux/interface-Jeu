@@ -34,7 +34,7 @@ var playerdeath4 = "img/pixel-art-asian-songkran-character-death4.png";
 var joueur = {
     x: 10,
     y: canvas.height / 2 - 50,
-    w: 200,
+    w: 100,
     h: 200,
     color: "blue",
     speed: 5,
