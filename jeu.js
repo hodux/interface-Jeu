@@ -18,18 +18,19 @@ var playerdeath2 = "img/pixel-art-asian-songkran-character-death2.png";
 var playerdeath3 = "img/pixel-art-asian-songkran-character-death3.png";
 var playerdeath4 = "img/pixel-art-asian-songkran-character-death4.png";
 
-// Chromecast
-// const context = cast.framework.CastReceiverContext.getInstance();
-// const CHANNEL = "";
+const namespace = 'urn:x-cast:com.example.cast.game';
 
-// context.addCustomMessageListener(CHANNEL, handleSender);
+castReceiverManager.onMessage = function(event) {
+    const message = JSON.parse(event.data);
 
-// function handleSender(customEvent) {
-//     console.log(joueur[0])
-//     console.log(customEvent.data.xJoueur)
-
-// }
-
+    switch (message.action) {
+        case 'up':
+            joueur.velocityY = -12; 
+            break;
+        default:
+            console.log('Unknown action:', message.action);
+    }
+};
 
 var joueur = {
     x: 10,
