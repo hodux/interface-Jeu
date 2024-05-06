@@ -5,7 +5,7 @@ var GameTime = 30000
 canvas.width = window.innerWidth - 50;
 canvas.height = window.innerHeight - 50
 canvas.style.border = "10px white solid";
-canvas.style.backgroundImage = "url('img/school.jpg')";
+canvas.style.backgroundImage = "url('img/outside.jpg')";
 canvas.style.backgroundSize = "100% 100%"
 canvas.style.display = "block";
 canvas.style.margin = "auto"
@@ -17,19 +17,6 @@ var playerdeath1 = "img/pixel-art-asian-songkran-character-death1.png";
 var playerdeath2 = "img/pixel-art-asian-songkran-character-death2.png";
 var playerdeath3 = "img/pixel-art-asian-songkran-character-death3.png";
 var playerdeath4 = "img/pixel-art-asian-songkran-character-death4.png";
-
-// Chromecast
-// const context = cast.framework.CastReceiverContext.getInstance();
-// const CHANNEL = "";
-
-// context.addCustomMessageListener(CHANNEL, handleSender);
-
-// function handleSender(customEvent) {
-//     console.log(joueur[0])
-//     console.log(customEvent.data.xJoueur)
-
-// }
-
 
 var joueur = {
     x: 10,

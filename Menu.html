@@ -4,61 +4,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+    <title>Rules</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
     <style>
-        body {
-            background-size: cover;
+
+        .rainbow {
             text-align: center;
+            text-decoration: underline;
+            font-size: 32px;
+            font-family: monospace;
+            letter-spacing: 5px;
+        }
+        .rainbow_text_animated {
+            background: linear-gradient(to right, #6666ff, #0099ff , #00ff00, #ff3399, #6666ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: rainbow_animation 6s ease-in-out infinite;
+            background-size: 400% 100%;
         }
 
-        #menu {
-            border: 10px solid #1A1A59;
-            background-color: #718EA4;
-            width: 600px;
-            margin: auto;
-            margin-top: 50px;
+        @keyframes rainbow_animation {
+            0%,100% {
+                background-position: 0 0;
+            }
+
+            50% {
+                background-position: 100% 0;
+            }
         }
 
-        a {
-            display: block;
-            background-color: #FFEAAA;
-            border: 2px solid;
-            margin: 5px;
-            padding: 5px;
-            text-decoration: none;
-            color: #042037;
+        body {
+            background-color: darkgrey;
+            color: white
         }
 
-        a:hover {
-            background-color: #042037;
-            color: #FFEAAA;
-            margin-left: 15px;
-            margin-right: 10px;
-
+        .container {
+            background-color: grey;
         }
 
-        iframe {
-            margin: 20px;
-
+        .wrapper {
+            max-width: 600px; 
+            margin: 0 auto; 
         }
 
-        .formualire {
-            background-color: #AA7939;
-            width: 40px;
-            border: 2px solid #FFEAAA;
-        }
+
     </style>
 </head>
-
 <body>
-
-    <h1>Welcome to Tri's Adventure</h1>
-    <div id="menu">
-        <h2>Menu de navigation</h2>
-        <a href="Stage1.html">Start</a>
-        <a href="rules.html">Rules</a>
+    <div class="vh-100 d-flex align-items-center justify-content-center wrapper">
+        <div class="container m-2 border border-secondary p-4 rounded">
+            <h3 class="rainbow rainbow_text_animated m-2">Welcome to Tri's Adventure</h3>
+            <div class="text-align">
+                <div class="row">
+                    <div class="col text-center">
+                        <a class="btn btn-primary mt-3" href="Rules.html">Rules</a>
+                        <a class="btn btn-primary mt-3" href="Stage1.html">Start</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
-
 </html>
