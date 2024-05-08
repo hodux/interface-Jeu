@@ -5,7 +5,7 @@ var GameTime = 30000
 canvas.width = window.innerWidth - 50;
 canvas.height = window.innerHeight - 50
 canvas.style.border = "10px white solid";
-canvas.style.backgroundImage = "url('img/outside.jpg')";
+canvas.style.backgroundImage = htmlImage;
 canvas.style.backgroundSize = "100% 100%"
 canvas.style.display = "block";
 canvas.style.margin = "auto"
@@ -28,7 +28,7 @@ var joueur = {
     velocityY: 0
 }
 
-var baseHeight = canvas.height - 150;
+var baseHeight = canvas.height - floorHeight;
 
 var cible = {
     x: canvas.width / 2 + 550,
@@ -36,6 +36,22 @@ var cible = {
     w: 200,
     h: 200,
     color: "blue",
+}
+
+var platform = {
+    x: 500,
+    y: baseHeight - 100,
+    w: 200,
+    h: 20,
+    color: "brown"
+}
+
+var platform2 = {
+    x: 1000,
+    y: baseHeight - 200,
+    w: 200,
+    h: 20,
+    color: "brown"
 }
 
 
@@ -77,6 +93,32 @@ function drawCible() {
     ctx.fillStyle = joueur.color
     ctx.fillRect(cible.x, cible.y, cible.w, cible.h)
 }
+
+function drawPlatform() {
+    ctx.fillStyle = platform.color
+    ctx.fillRect(platform.x, platform.y, platform.w, platform.h)
+    ctx.fillRect(platform2.x, platform2.y, platform2.w, platform2.h)
+}
+
+function wall(j,c){
+	if(collision(j, c)){
+		if(65 in keyDown || 68 in keyDown){
+			if(j.x < c.x+c.w/2){
+			j.x-= j.speed
+			}else{
+				j.x+= j.speed
+			}
+		}
+		if(83 in keyDown||87 in keyDown){
+			if(j.y<c.y+c.h/2){
+			j.y-= j.speed;
+			}else{
+			j.y+= j.speed;
+			}
+		}
+	}
+}
+
 
 document.addEventListener("keydown", function (e) {
     keyDown[e.keyCode] = true
@@ -199,6 +241,8 @@ function clavier() {
     // if (87 in keyDown  && joueur.y + joueur.h >= baseHeight) {
     //     joueur.velocityY = -12;
     // }
+    wall(joueur, platform)
+    wall(joueur, platform2)
 }
 
 function collision(a, b) {
@@ -216,7 +260,23 @@ function checkCollision() {
     }
 
     if (collision(joueur, cible)) {
-        window.location.href="Stage3.html"
+        window.location.href=nextLevel
+    }
+
+    if (collision(joueur, platform)) {
+        joueur.y = platform.y - joueur.h;
+        joueur.velocityY = 0;
+        jumped = false;
+        doubleJumped = false;
+        console.log("Platform touched")
+    }
+
+    if (collision(joueur, platform2)) {
+        joueur.y = platform2.y - joueur.h;
+        joueur.velocityY = 0;
+        jumped = false;
+        doubleJumped = false;
+        console.log("Platform2 touched")
     }
 }
 
@@ -224,6 +284,7 @@ function game() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     drawJoueur();
     drawCible();
+    drawPlatform();
     drawMur();
     clavier();
     applyGravity();
