@@ -100,6 +100,25 @@ function drawPlatform() {
     ctx.fillRect(platform2.x, platform2.y, platform2.w, platform2.h)
 }
 
+function wall(j,c){
+	if(collision(j, c)){
+		if(65 in keyDown || 68 in keyDown){
+			if(j.x < c.x+c.w/2){
+			j.x-= j.speed
+			}else{
+				j.x+= j.speed
+			}
+		}
+		if(83 in keyDown||87 in keyDown){
+			if(j.y<c.y+c.h/2){
+			j.y-= j.speed;
+			}else{
+			j.y+= j.speed;
+			}
+		}
+	}
+}
+
 
 document.addEventListener("keydown", function (e) {
     keyDown[e.keyCode] = true
@@ -222,6 +241,8 @@ function clavier() {
     // if (87 in keyDown  && joueur.y + joueur.h >= baseHeight) {
     //     joueur.velocityY = -12;
     // }
+    wall(joueur, platform)
+    wall(joueur, platform2)
 }
 
 function collision(a, b) {
