@@ -78,10 +78,18 @@ function Murs(x, y, width, height, color, speed) {
     }
 }
 
-var mur1 = new Murs(200, 0, 300, 50, "pink", 3)
+// Dash Cooldown
+var dashCooldown = new Murs(1600, 750, 100, 100, "yellow", 0)
 
 function drawMur() {
-    mur1.draw()
+    if (canDash) {
+        dashCooldown.draw();
+    }
+
+    deathwalls.forEach(function(deathwalls) {
+        deathwalls.draw();
+    });
+
 }
 
 function drawJoueur() {
@@ -199,7 +207,7 @@ function dashMove() {
         console.log("Dash attemp")
         function movePlayer() {
             if (joueur.x > 0) {
-                joueur.x -= 30;
+                joueur.x -= 50;
             }
         }
 
@@ -213,7 +221,7 @@ function dashMove() {
         console.log("Dash attemp")
         function movePlayer() {
             if (joueur.x < canvas.width - joueur.w) {
-                joueur.x += 30;
+                joueur.x += 50;
             }
         }
 
@@ -253,11 +261,18 @@ function collision(a, b) {
     ) { return (true) }
 }
 
-function checkCollision() {
-    if (collision(joueur, mur1)) {
+function deathCollision (deathMur) {
+    if (collision(joueur, deathMur)) {
         joueur.x = 10
         joueur.y = canvas.height / 2 - 50
     }
+}
+
+function checkCollision() {
+    deathwalls.forEach(function(murs) {
+        deathCollision(murs);
+    });
+
 
     if (collision(joueur, cible)) {
         window.location.href=nextLevel
