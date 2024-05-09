@@ -86,9 +86,13 @@ function drawMur() {
         dashCooldown.draw();
     }
 
-    deathwalls.forEach(function(deathwalls) {
-        deathwalls.draw();
-    });
+    if (deathwalls && deathwalls.length > 0) {
+        deathwalls.forEach(function(deathwall) {
+            deathwall.draw();
+        });
+    }
+    
+    
 
 }
 
@@ -269,10 +273,11 @@ function deathCollision (deathMur) {
 }
 
 function checkCollision() {
-    deathwalls.forEach(function(murs) {
-        deathCollision(murs);
-    });
-
+    if (deathwalls && deathwalls.length > 0) {
+        deathwalls.forEach(function(murs) {
+            deathCollision(murs);
+        });
+    }
 
     if (collision(joueur, cible)) {
         window.location.href=nextLevel

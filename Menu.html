@@ -4,11 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rules</title>
+    <title data-translate="title">Menu</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="translate.js"></script>
 
     <style>
-
         .rainbow {
             text-align: center;
             text-decoration: underline;
@@ -16,8 +16,9 @@
             font-family: monospace;
             letter-spacing: 5px;
         }
+
         .rainbow_text_animated {
-            background: linear-gradient(to right, #6666ff, #0099ff , #00ff00, #ff3399, #6666ff);
+            background: linear-gradient(to right, #6666ff, #0099ff, #00ff00, #ff3399, #6666ff);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
@@ -26,7 +27,7 @@
         }
 
         @keyframes rainbow_animation {
-            0%,100% {
+            0%, 100% {
                 background-position: 0 0;
             }
 
@@ -45,26 +46,57 @@
         }
 
         .wrapper {
-            max-width: 600px; 
-            margin: 0 auto; 
+            max-width: 600px;
+            margin: 0 auto;
         }
-
-
     </style>
 </head>
+
 <body>
     <div class="vh-100 d-flex align-items-center justify-content-center wrapper">
         <div class="container m-2 border border-secondary p-4 rounded">
-            <h3 class="rainbow rainbow_text_animated m-2">Welcome to Tri's Adventure</h3>
+            <h3 class="rainbow rainbow_text_animated m-2" data-translate="welcome">Welcome to Tri's Adventure</h3>
             <div class="text-align">
                 <div class="row">
                     <div class="col text-center">
-                        <a class="btn btn-primary mt-3" href="Rules.html">Rules</a>
-                        <a class="btn btn-primary mt-3" href="Stage1.html">Start</a>
+                        <a class="btn btn-primary mt-3" href="Rules.html" data-translate="rules">Rules</a>
+                        <a class="btn btn-primary mt-3" href="Stage1.html" data-translate="start">Start</a>
                     </div>
                 </div>
             </div>
+            <div class="text-center mt-3">
+                <button class="btn btn-secondary" onclick="translatePage('en')">English</button>
+                <button class="btn btn-secondary" onclick="translatePage('es')">Español</button>
+                <button class="btn btn-secondary" onclick="translatePage('fr')">Français</button>
+            </div>
         </div>
     </div>
+
+    <script>
+        const translations = {
+            en: {
+                title: 'Rules',
+                welcome: 'Welcome to Tri\'s Adventure',
+                rules: 'Rules',
+                start: 'Start'
+            },
+            es: {
+                title: 'Reglas',
+                welcome: 'Bienvenido a la aventura de Tri',
+                rules: 'Reglas',
+                start: 'Comenzar'
+            },
+            fr: {
+                title: 'Règles',
+                welcome: "Bienvenue dans l'aventure de Tri",
+                rules: 'Règles',
+                start: 'Démarrer'
+            }
+        };
+
+        var currentTranslation = sessionStorage.getItem('currentTranslation');
+        translatePage(currentTranslation);
+    </script>
 </body>
+
 </html>

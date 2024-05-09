@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rules</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="translate.js"></script>
 
     <style>
 
@@ -54,20 +55,22 @@
 <body>
     <div class="vh-100 d-flex align-items-center justify-content-center wrapper">
         <div class="container m-2 border border-secondary p-4 rounded">
-            <h3 class="rainbow rainbow_text_animated m-2">Rules of Tri's Adventure</h3>
+            <h3 class="rainbow rainbow_text_animated m-2" data-translate="title">Rules of Tri's Adventure</h3>
             <div class="text-align p-2">
                 <div class="row">
                     <div class="col-md-6">
-                        <h3 class="pl-5">- Controls -</h3>
-                        <ul class="">
-                            <li>A to move left, D to move right</li>
-                            <li>Jump: W</li>
-                            <li>Space: Superjump</li>
-                            <li>W+Space for double jump</li>
-                        </ul>
+                        <h3 class="pl-5" data-translate="controls">- Controls -</h3>
+                        <div class="text-align">
+                            <ul class="" >
+                                <li data-translate="moveLeft">A to move left, D to move right</li>
+                                <li data-translate="jump">Jump: W</li>
+                                <li data-translate="superJump">Space: Superjump</li>
+                                <li data-translate="doubleJump">W+Space for double jump</li>
+                            </ul>
+                        </div>                        
                     </div>
                     <div class="col-md-6 pt-4">
-                        <h4>Go to the doors to proceed to the next stages to find Tri's glasses. Some platforms may kill you, so try to avoid them.</h3>
+                        <h4 data-translate="lore">Go to the doors to proceed to the next stages to find Tri's glasses. Some platforms may kill you, so try to avoid them.</h3>
                     </div>
                 </div>
 
@@ -79,5 +82,41 @@
             </div>
         </div>
     </div>
+
+    <script>
+        const translations = {
+            en: {
+                title: "Rules of Tri's Adventure",
+                controls: "- Controls -",
+                moveLeft: 'A to move left, D to move right',
+                jump: 'Jump: W',
+                superJump: 'Space: Superjump',
+                doubleJump: 'W+Space for double jump',
+                lore: "Head towards the doors to advance to the subsequent stages in search of Tri's glasses. Be cautious as certain platforms pose lethal risks; therefore, endeavor to evade them."
+
+            },
+            es: {
+                title: "Reglas de la aventura de Tri",
+                controls: "- Controla -",
+                moveLeft: 'A para moverse a la izquierda, D para moverse a la derecha',
+                jump: 'Saltar: W',
+                superJump: 'Espacio: Super salto',
+                doubleJump: 'W+Espacio para doble salto',
+                lore: "Dirígete hacia las puertas para avanzar a las siguientes fases en busca de las gafas de Tri. Ten cuidado, ya que ciertas plataformas plantean riesgos letales; por tanto, procura esquivarlas."
+            },
+            fr: {
+                title: "Règles de l'aventure de Tri",
+                controls: "- Contrôles -",
+                moveLeft: 'A pour aller à gauche, D pour aller à droite',
+                jump: 'Sauter: W',
+                superJump: 'Espace: Super saut',
+                doubleJump: 'W+Espace pour double saut',
+                lore: "Dirigez-vous vers les portes pour avancer vers les étapes suivantes à la recherche des lunettes de Tri. Soyez prudent car certaines plates-formes présentent des risques mortels; par conséquent, essayez de les éviter."
+            }
+        };
+
+        var currentTranslation = sessionStorage.getItem('currentTranslation');
+        translatePage(currentTranslation);
+    </script>
 </body>
 </html>
