@@ -25,7 +25,7 @@ document.getElementById('right').addEventListener('click', () => {
 });
 
 
-// Créer une fonction pour chaque événement
+
 function handleUp() {
 
 }
