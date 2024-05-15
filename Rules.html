@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rules</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <script src="translate.js"></script>
 
     <style>
@@ -67,10 +68,20 @@
                                 <li data-translate="superJump">Space: Superjump</li>
                                 <li data-translate="doubleJump">W+Space for double jump</li>
                             </ul>
-                        </div>                        
+                        </div>
+
+                        <div class="border border-warning p-2">
+                            <span class="text-warning">
+                                <i class="bi bi-exclamation-triangle-fill"> :</i> <!-- Bootstrap warning icon -->
+                                <span data-translate="info">For best experience, play the game in fullscreen mode at a resolution of 1920x1080.</span>
+                            </span>
+                        </div>
+                        
+                        
+                        
                     </div>
-                    <div class="col-md-6 pt-4">
-                        <h4 data-translate="lore">Go to the doors to proceed to the next stages to find Tri's glasses. Some platforms may kill you, so try to avoid them.</h3>
+                    <div class="col-md-6 pt-4 border-top border-bottom ">
+                        <h4 data-translate="lore"></h3>
                     </div>
                 </div>
 
@@ -92,8 +103,8 @@
                 jump: 'Jump: W',
                 superJump: 'Space: Superjump',
                 doubleJump: 'W+Space for double jump',
-                lore: "Head towards the doors to advance to the subsequent stages in search of Tri's glasses. Be cautious as certain platforms pose lethal risks; therefore, endeavor to evade them."
-
+                lore: "Head towards the doors to advance to the subsequent stages in search of Tri's glasses. Be cautious as certain platforms pose lethal risks; make sure to evade them!",
+                info: "For the best experience, play the game in fullscreen mode at a resolution of 1920x1080.",
             },
             es: {
                 title: "Reglas de la aventura de Tri",
@@ -102,7 +113,8 @@
                 jump: 'Saltar: W',
                 superJump: 'Espacio: Super salto',
                 doubleJump: 'W+Espacio para doble salto',
-                lore: "Dirígete hacia las puertas para avanzar a las siguientes fases en busca de las gafas de Tri. Ten cuidado, ya que ciertas plataformas plantean riesgos letales; por tanto, procura esquivarlas."
+                lore: "Dirígete hacia las puertas para avanzar a las siguientes fases en busca de las gafas de Tri. Ten cuidado, ya que ciertas plataformas plantean riesgos letales; ¡Evadirlos!",
+                info: "Para una mejor experiencia, juega el juego en modo pantalla completa con una resolución de 1920x1080."
             },
             fr: {
                 title: "Règles de l'aventure de Tri",
@@ -111,7 +123,8 @@
                 jump: 'Sauter: W',
                 superJump: 'Espace: Super saut',
                 doubleJump: 'W+Espace pour double saut',
-                lore: "Dirigez-vous vers les portes pour avancer vers les étapes suivantes à la recherche des lunettes de Tri. Soyez prudent car certaines plates-formes présentent des risques mortels; par conséquent, essayez de les éviter."
+                lore: "Dirigez-vous vers les portes pour avancer vers les étapes suivantes à la recherche des lunettes de Tri. Soyez prudent car certaines plates-formes présentent des risques mortels; par conséquent, éviter les!",
+                info: "Pour la meilleure expérience, jouez au jeu en mode plein écran avec une résolution de 1920x1080."
             }
         };
 

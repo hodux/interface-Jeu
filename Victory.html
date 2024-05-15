@@ -58,21 +58,14 @@
 
     <div class="vh-100 d-flex align-items-center justify-content-center wrapper">
         <div class="container m-2 border border-secondary p-4 rounded">
-            <h3 class="rainbow rainbow_text_animated m-2" data-translate="welcome">Welcome to Tri's Adventure</h3>
+            <h3 class="rainbow rainbow_text_animated m-2" data-translate="victory">Congratulations!</h3>
+            <h5 class="m-2 align-items-center justify-content-center d-flex" data-translate="found">You've found Tri's Glasses!</h5>
             <div class="text-align">
                 <div class="row">
                     <div class="col text-center">
-                        <a class="btn btn-primary mt-3" href="Rules.html" data-translate="rules">Rules</a>
-                        <a class="btn btn-primary mt-3" href="Stage1.html" data-translate="start">Start</a>
+                        <a class="btn btn-primary mt-3" href="Menu.html" data-translate="button">Back to menu</a>
                     </div>
                 </div>
-            </div>
-            <div class="text-center mt-3">
-                <div class="text-center mt-3">
-                    <button id="en" class="btn btn-secondary language-btn" onclick="translatePage('en')">English</button>
-                    <button id="es" class="btn btn-secondary language-btn" onclick="translatePage('es')">Español</button>
-                    <button id="fr" class="btn btn-secondary language-btn" onclick="translatePage('fr')">Français</button>
-                </div>                
             </div>
         </div>
     </div>
@@ -81,22 +74,19 @@
     <script>
         const translations = {
             en: {
-                title: 'Rules',
-                welcome: 'Welcome to Tri\'s Adventure',
-                rules: 'Rules',
-                start: 'Start'
+                victory: "Congratulations!",
+                found: "You've found Tri's Glasses!",
+                button: 'Back to menu',
             },
             es: {
-                title: 'Reglas',
-                welcome: 'Bienvenido a la aventura de Tri',
-                rules: 'Reglas',
-                start: 'Comenzar'
+                victory: "¡Felicidades!",
+                found: "¡Has encontrado las gafas de Tri!",
+                button: 'Volver al menú',
             },
             fr: {
-                title: 'Règles',
-                welcome: "Bienvenue dans l'aventure de Tri",
-                rules: 'Règles',
-                start: 'Démarrer'
+                victory: "Félicitations!",
+                found: "Vous avez trouvé les lunettes de Tri !",
+                button: 'Retour au menu',
             }
         };
 

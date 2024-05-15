@@ -4,14 +4,22 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Niveau 3</title>
+    <script src="game.js" ></script> 
 </head>
 
 <body>
 
     <script>
         var htmlImage = "url('img/forest.png')"; 
-        var nextLevel = "Stage1.html";
+        var nextLevel = "Victory.html";
         var floorHeight = 135;
+
+        // (x, y, width, height, color, speed)
+        var deathwalls = [
+            new Murs(850, 650, 50, 300, "orange", 0),
+            new Murs(850, 0, 50, 300, "orange", 0),
+
+        ];
 
     </script>
     <script src="game.js" ></script> 
