@@ -17,6 +17,9 @@ var playerdeath1 = "img/pixel-art-asian-songkran-character-death1.png";
 var playerdeath2 = "img/pixel-art-asian-songkran-character-death2.png";
 var playerdeath3 = "img/pixel-art-asian-songkran-character-death3.png";
 var playerdeath4 = "img/pixel-art-asian-songkran-character-death4.png";
+var music = new Audio()
+music.src = "./music/gameMusic.mp3"
+music.volume = 0.03
 
 var joueur = {
     x: 10,
@@ -311,6 +314,7 @@ function game() {
     animatePlayer();
     doubleJump();
     dashMove();
+    music.play();
     requestAnimationFrame(game);
 }
 
