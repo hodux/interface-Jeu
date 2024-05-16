@@ -85,6 +85,68 @@ function Murs(x, y, width, height, color, speed) {
     }
 }
 
+function checkWindowDimensions() {
+    if (window.innerWidth < 1912 && window.innerHeight < 932) {
+        var language = sessionStorage.getItem("currentTranslation")
+
+        if (language === 'en') {
+
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Your page isn't in fullscreen!",
+                confirmButtonColor: "#3085d6",
+                confirmButtonText: "Try again?",
+                backdrop: `rgba(255, 42, 0, 1)`,
+                footer: '<a href="Rules.html">Why do I have this issue?</a>'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        location.reload();
+                    }
+                });
+                setTimeout(() => {
+                }, timeout);
+
+        } else if (language === 'es') {
+
+            Swal.fire({
+                icon: "error",
+                title: "¡Ups...",
+                text: "¡Tu página no está en pantalla completa!",
+                confirmButtonColor: "#3085d6",
+                confirmButtonText: "¿Intentar de nuevo?",
+                backdrop: `rgba(255, 42, 0, 1)`,
+                footer: '<a href="Rules.html">¿Por qué tengo este problema?</a>'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        location.reload();
+                    }
+                });
+                setTimeout(() => {
+                }, timeout);    
+
+        } else if (language === 'fr') {
+            
+            Swal.fire({
+                icon: "error",
+                title: "Oups...",
+                text: "Votre page n'est pas en plein écran !",
+                confirmButtonColor: "#3085d6",
+                confirmButtonText: "Réessayer ?",
+                backdrop: `rgba(255, 42, 0, 1)`,
+                footer: '<a href="Rules.html">Pourquoi ai-je ce problème ?</a>'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        location.reload();
+                    }
+                });
+                setTimeout(() => {
+                }, timeout);
+      
+        }
+    } 
+}
+
 // Dash Cooldown
 var dashCooldown = new Murs(1600, 750, 100, 100, "yellow", 0)
 
@@ -312,6 +374,7 @@ function checkCollision() {
 
 function game() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+    checkWindowDimensions();
     drawJoueur();
     drawCible();
     drawPlatform();
