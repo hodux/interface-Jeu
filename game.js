@@ -21,6 +21,10 @@ var music = new Audio()
 music.src = "./music/gameMusic.mp3"
 music.volume = 0.03
 
+var jumpSound = new Audio()
+jumpSound.src = "./music/jumpSound.mp3"
+jumpSound.volume = 0.05
+
 var joueur = {
     x: 10,
     y: canvas.height / 2 - 50,
@@ -189,15 +193,18 @@ function doubleJump() {
         console.log("Player jumped");
         joueur.velocityY = -12;
         jumped = true;
+        jumpSound.play();
     } else if (32 in keyDown && !jumped) {
         joueur.velocityY = -12;
         jumped = true;
+        jumpSound.play();
     }
     if ((32 in keyDown) && jumped) {
         if (!doubleJumped) {
             console.log("Player superjumped");
             joueur.velocityY = -15;
             doubleJumped = true;
+            jumpSound.play();
         }
         jumped = true;
     }
