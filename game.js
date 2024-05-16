@@ -267,8 +267,7 @@ function collision(a, b) {
 
 function deathCollision (deathMur) {
     if (collision(joueur, deathMur)) {
-        joueur.x = 10
-        joueur.y = canvas.height / 2 - 50
+        window.location.href="GameOver1.html";
     }
 }
 
