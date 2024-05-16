@@ -5,9 +5,10 @@ var GameTime = 30000;
 canvas.width = window.innerWidth - 50;
 canvas.height = window.innerHeight - 50;
 canvas.style.border = "10px white solid";
-canvas.style.backgroundImage = "url('img/school.jpg')";
+canvas.style.backgroundImage = "url('img/heaven.jpg')";
 canvas.style.display = "block";
 canvas.style.margin = "auto";
+canvas.style.backgroundSize = "100% 100%"
 document.body.appendChild(canvas);
 var ImgJoueur = new Image();
 var gravity = 0.5;
@@ -21,7 +22,7 @@ var playerdeath4 = "img/pixel-art-asian-songkran-character-death4.png.png";
 
 
 var joueur = {
-    x: 580,
+    x: canvas.width /2.1,
     y: canvas.height / 2,
     w: 100,
     h: 200,
