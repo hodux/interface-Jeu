@@ -21,7 +21,6 @@ var playerdeath4 = "img/pixel-art-asian-songkran-character-death4.png.png";
 var music = new Audio()
 music.src = "./music/gameOver.mp3"
 music.volume = 0.05
-music.loop = false;
 
 var isMusicPlaying = false;
 
