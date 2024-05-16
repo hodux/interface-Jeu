@@ -18,11 +18,17 @@ var playerdeath1 = "img/pixel-art-asian-songkran-character-death1.png.png";
 var playerdeath2 = "img/pixel-art-asian-songkran-character-death2.png.png";
 var playerdeath3 = "img/pixel-art-asian-songkran-character-death3.png.png";
 var playerdeath4 = "img/pixel-art-asian-songkran-character-death4.png.png";
+var music = new Audio()
+music.src = "./music/gameOver.mp3"
+music.volume = 0.05
+music.loop = false;
+
+var isMusicPlaying = false;
 
 
 
 var joueur = {
-    x: canvas.width /2.1,
+    x: canvas.width / 2.1,
     y: canvas.height / 2,
     w: 100,
     h: 200,
@@ -42,7 +48,7 @@ var deathImages = [playerdeath1, playerdeath2, playerdeath3, playerdeath4];
 var currentDeathIndex = 0;
 
 function drawDeathAnimation() {
-    
+
     ImgJoueur.src = deathImages[currentDeathIndex];
     ctx.drawImage(ImgJoueur, joueur.x, joueur.y, joueur.w, joueur.h);
     currentDeathIndex++;
@@ -56,6 +62,10 @@ var animationSpeed = 300;
 function game() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     drawDeathAnimation();
+    if (!isMusicPlaying) { 
+        music.play();
+        isMusicPlaying = true; 
+    }
     setTimeout(game, animationSpeed);
 }
 
