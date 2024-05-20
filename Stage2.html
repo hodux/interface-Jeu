@@ -15,15 +15,22 @@
         var nextLevel = "Stage3.html";
         var floorHeight = 210;
 
-        // (x, y, width, height, color, speed)
-        var deathwalls = [
-            new Murs(600, 370, 300, 50, "red", 0),
+        var deathwalls = [];
+        var walls = [];
 
-        ];
+        // JSON pour deathwalls
+        fetch('/json/level2_deathwalls.json')
+            .then(response => response.json())
+            .then(data => {
+                deathwalls = data.map(obj => new Murs(obj.x, obj.y, obj.width, obj.height, obj.color, obj.speed));
+            });
 
-        var walls = [
-            new Murs(500, 500, 300, 50, "orange", 0),
-        ]
+        // JSON pour walls
+        fetch('/json/level2_walls.json')
+            .then(response => response.json())
+            .then(data => {
+                walls = data.map(obj => new Murs(obj.x, obj.y, obj.width, obj.height, obj.color, obj.speed));
+            });
 
     </script>
     <script src="game.js" ></script> 
