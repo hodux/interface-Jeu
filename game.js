@@ -303,19 +303,30 @@ function checkCollision() {
     if (walls && walls.length > 0) {
         walls.forEach(function(murs) {
             if (collision(joueur, murs)) {
-                joueur.y = murs.y - joueur.h;
-                joueur.velocityY = 0;
-                jumped = false;
-                doubleJumped = false;
-            };
+                var xOverlap = Math.min(joueur.x + joueur.w, murs.x + murs.w) - Math.max(joueur.x, murs.x);
+                var yOverlap = Math.min(joueur.y + joueur.h, murs.y + murs.h) - Math.max(joueur.y, murs.y);
+
+                if (xOverlap < yOverlap) { // Collision par les côtés
+                    if (joueur.x < murs.x) { // Collision par la gauche
+                        joueur.x = murs.x - joueur.w;
+                    } else { // Collision par la droite
+                        joueur.x = murs.x + murs.w;
+                    }
+                } else { // Collision au top
+                    joueur.y = murs.y - joueur.h;
+                    joueur.velocityY = 0;
+                    jumped = false;
+                    doubleJumped = false;
+                }
+            }
         });
     }
 
     if (collision(joueur, cible)) {
-        window.location.href=nextLevel
+        window.location.href = nextLevel;
     }
-
 }
+
 
 function game() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
