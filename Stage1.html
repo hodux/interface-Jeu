@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Niveau 1</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="game.js" ></script>
+</head>
+
+<body>
+
+    <script>
+        var htmlImage = "url('img/school.jpg')"; 
+        var nextLevel = "Stage2.html";
+        var floorHeight = 150;
+        
+        // (x, y, width, height, color, speed)
+        var deathwalls = [
+            new Murs(200, 0, 300, 50, "pink", 3),
+            new Murs(200, 500, 300, 50, "pink", 3),
+        ];
+
+        var walls = [
+            new Murs(500, 500, 300, 50, "orange", 0),
+        ]
+
+    </script>
+    <script src="game.js" ></script> 
+</body>
+
+</html>
