@@ -17,10 +17,9 @@ var playerdeath1 = "img/pixel-art-asian-songkran-character-death1.png";
 var playerdeath2 = "img/pixel-art-asian-songkran-character-death2.png";
 var playerdeath3 = "img/pixel-art-asian-songkran-character-death3.png";
 var playerdeath4 = "img/pixel-art-asian-songkran-character-death4.png";
-        var music = new Audio()
-        music.src = "./music/gameMusic.mp3"
-        music.volume = 0.03
-
+var music = new Audio()
+music.src = "./music/gameMusic.mp3"
+music.volume = 0.03
 var jumpSound = new Audio()
 jumpSound.src = "./music/jumpSound.mp3"
 jumpSound.volume = 0.01
@@ -45,23 +44,6 @@ var cible = {
     color: "blue",
 }
 
-var platform = {
-    x: 500,
-    y: baseHeight - 100,
-    w: 200,
-    h: 20,
-    color: "brown"
-}
-
-var platform2 = {
-    x: 1000,
-    y: baseHeight - 200,
-    w: 200,
-    h: 20,
-    color: "brown"
-}
-
-
 var keyDown = {}
 var ImgJoueur = new Image()
 ImgJoueur.src = player
@@ -85,6 +67,7 @@ function Murs(x, y, width, height, color, speed) {
     }
 }
 
+// Alerte pour la fenetre, le jeu n'est pas RWD
 function checkWindowDimensions() {
     if (window.innerWidth < 1912 && window.innerHeight < 932) {
         var language = sessionStorage.getItem("currentTranslation")
@@ -149,8 +132,8 @@ function checkWindowDimensions() {
 
 // Dash Cooldown
 var dashCooldown = new Murs(1600, 750, 100, 100, "yellow", 0)
-
 function drawMur() {
+    // affiche dash cooldown 
     if (canDash) {
         dashCooldown.draw();
     }
@@ -161,7 +144,11 @@ function drawMur() {
         });
     }
     
-    
+    if (walls && walls.length > 0) {
+        walls.forEach(function(walls) {
+            walls.draw();
+        });
+    }
 
 }
 
@@ -174,32 +161,6 @@ function drawCible() {
     ctx.fillStyle = joueur.color
     ctx.fillRect(cible.x, cible.y, cible.w, cible.h)
 }
-
-function drawPlatform() {
-    ctx.fillStyle = platform.color
-    ctx.fillRect(platform.x, platform.y, platform.w, platform.h)
-    ctx.fillRect(platform2.x, platform2.y, platform2.w, platform2.h)
-}
-
-function wall(j,c){
-	if(collision(j, c)){
-		if(65 in keyDown || 68 in keyDown){
-			if(j.x < c.x+c.w/2){
-			j.x-= j.speed
-			}else{
-				j.x+= j.speed
-			}
-		}
-		if(83 in keyDown||87 in keyDown){
-			if(j.y<c.y+c.h/2){
-			j.y-= j.speed;
-			}else{
-			j.y+= j.speed;
-			}
-		}
-	}
-}
-
 
 document.addEventListener("keydown", function (e) {
     keyDown[e.keyCode] = true
@@ -234,41 +195,38 @@ function animatePlayer() {
     }
 }
 
+var grounded;
+var jumped = false;
+var doubleJumped = false;
+
 function applyGravity() {
     joueur.velocityY += gravity;
     joueur.y += joueur.velocityY;
 
+    // Si le joueur touche le sol
     if (joueur.y + joueur.h > baseHeight) {
         joueur.y = baseHeight - joueur.h;
         joueur.velocityY = 0;
         jumped = false;
         doubleJumped = false;
-
-        console.log("Ground touched")
+        grounded = true;
     }
 }
 
-var jumped = false;
-var doubleJumped = false;
+// Fonction pour le saut et le double saut
 function doubleJump() {
-    if (87 in keyDown && !jumped) {
-        console.log("Player jumped");
-        joueur.velocityY = -12;
-        jumped = true;
+    // Si touche espace est activé et le joueur n'a pas jump
+    if (32 in keyDown && !jumped) {
+        joueur.velocityY = -15;
         jumpSound.play();
-    } else if (32 in keyDown && !jumped) {
-        joueur.velocityY = -12;
         jumped = true;
+        grounded = false;
+    } 
+    // Si touche espace est activé et le joueur a jump, mais pas double jump
+    else if (32 in keyDown && !doubleJumped && joueur.velocityY >= 0 && !grounded) {
+        joueur.velocityY = -15;
         jumpSound.play();
-    }
-    if ((32 in keyDown) && jumped) {
-        if (!doubleJumped) {
-            console.log("Player superjumped");
-            joueur.velocityY = -15;
-            doubleJumped = true;
-            jumpSound.play();
-        }
-        jumped = true;
+        doubleJumped = true;
     }
 }
 
@@ -318,16 +276,7 @@ function clavier() {
     if (68 in keyDown && joueur.x < canvas.width - joueur.w) {
         joueur.x += joueur.speed;
     }
-    // Espace ou W pour sauter
-    if (32 in keyDown && joueur.y + joueur.h >= baseHeight) {
-        joueur.velocityY = -12;
-        jumpSound.play()
-    }
-    // if (87 in keyDown  && joueur.y + joueur.h >= baseHeight) {
-    //     joueur.velocityY = -12;
-    // }
-    wall(joueur, platform)
-    wall(joueur, platform2)
+
 }
 
 function collision(a, b) {
@@ -351,25 +300,21 @@ function checkCollision() {
         });
     }
 
+    if (walls && walls.length > 0) {
+        walls.forEach(function(murs) {
+            if (collision(joueur, murs)) {
+                joueur.y = murs.y - joueur.h;
+                joueur.velocityY = 0;
+                jumped = false;
+                doubleJumped = false;
+            };
+        });
+    }
+
     if (collision(joueur, cible)) {
         window.location.href=nextLevel
     }
 
-    if (collision(joueur, platform)) {
-        joueur.y = platform.y - joueur.h;
-        joueur.velocityY = 0;
-        jumped = false;
-        doubleJumped = false;
-        console.log("Platform touched")
-    }
-
-    if (collision(joueur, platform2)) {
-        joueur.y = platform2.y - joueur.h;
-        joueur.velocityY = 0;
-        jumped = false;
-        doubleJumped = false;
-        console.log("Platform2 touched")
-    }
 }
 
 function game() {
@@ -377,7 +322,6 @@ function game() {
     checkWindowDimensions();
     drawJoueur();
     drawCible();
-    drawPlatform();
     drawMur();
     clavier();
     applyGravity();
