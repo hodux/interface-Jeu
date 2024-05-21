@@ -54,7 +54,9 @@
 </head>
 
 <body>
-    
+    <audio id="backgroundMusic" autoplay loop>
+        <source src="./music/victory.mp3" type="audio/mpeg">
+    </audio>
 
     <div class="vh-100 d-flex align-items-center justify-content-center wrapper">
         <div class="container m-2 border border-secondary p-4 rounded">
@@ -72,6 +74,12 @@
 
 
     <script>
+        window.addEventListener('load', function () {
+            var audio = document.getElementById('backgroundMusic');
+            audio.volume = 0.02;
+            audio.play();
+        });
+
         const translations = {
             en: {
                 victory: "Congratulations!",
