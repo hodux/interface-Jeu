@@ -58,7 +58,11 @@
         <source src="./music/victory.mp3" type="audio/mpeg">
     </audio>
 
-    <div class="vh-100 d-flex align-items-center justify-content-center wrapper">
+    <video id="Tri" autoplay class="vh-100 vw-100" style="object-fit: cover; position: absolute; top: 0; left: 0; z-index: 10;">
+        <source src="./img/win.mp4" type="video/mp4">
+    </video>
+
+    <div id="winMessage" class="vh-100 d-flex align-items-center justify-content-center wrapper" style="display: none;">
         <div class="container m-2 border border-secondary p-4 rounded">
             <h3 class="rainbow rainbow_text_animated m-2" data-translate="victory">Congratulations!</h3>
             <h5 class="m-2 align-items-center justify-content-center d-flex" data-translate="found">You've found Tri's Glasses!</h5>
@@ -78,6 +82,14 @@
             var audio = document.getElementById('backgroundMusic');
             audio.volume = 0.02;
             audio.play();
+        });
+
+        var video = document.getElementById('Tri');
+        var winMessage = document.getElementById('winMessage');
+
+        video.addEventListener('ended', function () {
+            video.style.display = 'none';
+            winMessage.style.display = 'flex';
         });
 
         const translations = {
