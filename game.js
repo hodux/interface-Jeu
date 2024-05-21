@@ -67,19 +67,26 @@ function Murs(x, y, width, height, color, speed) {
     }
 }
 
+async function getTranslations() {
+    const response = await fetch("../json/translations.json");
+    const translations = await response.json();
+
+    return translations
+}
+
 // Alerte pour la fenetre, le jeu n'est pas RWD
 function checkWindowDimensions() {
-    if (window.innerWidth < 1912 && window.innerHeight < 932) {
+    if (window.screenTop && window.screenY) {
         var language = sessionStorage.getItem("currentTranslation")
-
-        if (language === 'en') {
+        getTranslations().then((translations) => {
 
             Swal.fire({
                 icon: "error",
-                title: "Oops...",
+                title: translations[language].welcome,
                 text: "Your page isn't in fullscreen!",
                 confirmButtonColor: "#3085d6",
                 confirmButtonText: "Try again?",
+                allowOutsideClick: false,
                 backdrop: `rgba(255, 42, 0, 1)`,
                 footer: '<a href="Rules.html">Why do I have this issue?</a>'
                 }).then((result) => {
@@ -89,44 +96,13 @@ function checkWindowDimensions() {
                 });
                 setTimeout(() => {
                 }, timeout);
+                console.log("wait")
 
-        } else if (language === 'es') {
+        });
 
-            Swal.fire({
-                icon: "error",
-                title: "¡Ups...",
-                text: "¡Tu página no está en pantalla completa!",
-                confirmButtonColor: "#3085d6",
-                confirmButtonText: "¿Intentar de nuevo?",
-                backdrop: `rgba(255, 42, 0, 1)`,
-                footer: '<a href="Rules.html">¿Por qué tengo este problema?</a>'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        location.reload();
-                    }
-                });
-                setTimeout(() => {
-                }, timeout);    
 
-        } else if (language === 'fr') {
-            
-            Swal.fire({
-                icon: "error",
-                title: "Oups...",
-                text: "Votre page n'est pas en plein écran !",
-                confirmButtonColor: "#3085d6",
-                confirmButtonText: "Réessayer ?",
-                backdrop: `rgba(255, 42, 0, 1)`,
-                footer: '<a href="Rules.html">Pourquoi ai-je ce problème ?</a>'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        location.reload();
-                    }
-                });
-                setTimeout(() => {
-                }, timeout);
-      
-        }
+        
+        
     } 
 }
 

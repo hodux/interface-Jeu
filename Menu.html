@@ -74,6 +74,7 @@
                     <button id="en" class="btn btn-info language-btn" onclick="translatePage('en')">English</button>
                     <button id="es" class="btn btn-secondary language-btn"onclick="translatePage('es')">Español</button>
                     <button id="fr" class="btn btn-secondary language-btn"onclick="translatePage('fr')">Français</button>
+                    <button id="zh" class="btn btn-secondary language-btn"onclick="translatePage('zh')">中文</button>
                 </div>
             </div>
         </div>
@@ -85,24 +86,6 @@
         if (!sessionStorage.getItem("currentTranslation")) {
             sessionStorage.setItem('currentTranslation', "en");
         }
-
-        const translations = {
-            en: {
-                welcome: 'Welcome to Tri\'s Adventure',
-                rules: 'Rules',
-                start: 'Start'
-            },
-            es: {
-                welcome: 'Bienvenido a la aventura de Tri',
-                rules: 'Reglas',
-                start: 'Comenzar'
-            },
-            fr: {
-                welcome: "Bienvenue dans l'aventure de Tri",
-                rules: 'Règles',
-                start: 'Démarrer'
-            }
-        };
 
         var currentTranslation = sessionStorage.getItem('currentTranslation');
         translatePage(currentTranslation);

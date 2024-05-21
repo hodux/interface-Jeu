@@ -1,7 +1,11 @@
 var currentTranslation;
-
-function translatePage(language) {
+ 
+async function translatePage(language) {
     currentTranslation = language;
+
+    const response = await fetch("../json/translations.json");
+    const translations = await response.json();
+    
     document.querySelectorAll('[data-translate]').forEach(element => {
         const key = element.getAttribute('data-translate');
         if (translations[language] && translations[language][key]) {
@@ -24,7 +28,8 @@ function translatePage(language) {
         document.getElementById('es').classList.replace('btn-secondary', 'btn-info');
     } else if (language === 'fr') {
         document.getElementById('fr').classList.replace('btn-secondary', 'btn-info');
+    } else if (language === 'zh') {
+        document.getElementById('zh').classList.replace('btn-secondary', 'btn-info');
     }
-
     
 }

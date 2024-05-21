@@ -92,24 +92,6 @@
             winMessage.style.display = 'flex';
         });
 
-        const translations = {
-            en: {
-                victory: "Congratulations!",
-                found: "You've found Tri's Glasses!",
-                button: 'Back to menu',
-            },
-            es: {
-                victory: "¡Felicidades!",
-                found: "¡Has encontrado las gafas de Tri!",
-                button: 'Volver al menú',
-            },
-            fr: {
-                victory: "Félicitations!",
-                found: "Vous avez trouvé les lunettes de Tri !",
-                button: 'Retour au menu',
-            }
-        };
-
         var currentTranslation = sessionStorage.getItem('currentTranslation');
         translatePage(currentTranslation);
     </script>

@@ -15,24 +15,6 @@
         <a class="btn btn-light mt-3" href="Menu.html" data-translate="mainMenu"></a>
     </div>
     <script>
-        const translations = {
-            en: {
-                deathMessage: "You are dead",
-                restart: "Restart",
-                mainMenu: "Return to main menu"
-            },
-            es: {
-                deathMessage: "Estás muerto",
-                restart: "Reanudar",
-                mainMenu: "Volver al menú principal"
-            },
-            fr: {
-                deathMessage: "Vous êtes mort",
-                restart: "Recommencer",
-                mainMenu: "Retour au menu principal"
-            }
-        };
-
         var currentTranslation = sessionStorage.getItem('currentTranslation');
         translatePage(currentTranslation);
     </script>
