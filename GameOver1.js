@@ -13,11 +13,11 @@ document.body.appendChild(canvas);
 var ImgJoueur = new Image();
 var gravity = 0.5;
 var player = new Image();
-player.src = "img/pixel-art-asian-songkran-character-png.png";
-var playerdeath1 = "img/pixel-art-asian-songkran-character-death1.png.png";
-var playerdeath2 = "img/pixel-art-asian-songkran-character-death2.png.png";
-var playerdeath3 = "img/pixel-art-asian-songkran-character-death3.png.png";
-var playerdeath4 = "img/pixel-art-asian-songkran-character-death4.png.png";
+
+var playerdeath1 = "img/death1.png";
+var playerdeath2 = "img/death2.png";
+var playerdeath3 = "img/death3.png";
+var playerdeath4 = "img/death4.png";
 var music = new Audio()
 music.src = "./music/gameOver.mp3"
 music.volume = 0.05
@@ -28,7 +28,7 @@ var isMusicPlaying = false;
 
 var joueur = {
     x: canvas.width / 2.1,
-    y: canvas.height / 2,
+    y: canvas.height / 1.6,
     w: 100,
     h: 200,
     color: "blue",
@@ -39,9 +39,7 @@ var joueur = {
 var floorHeight = 50;
 var baseHeight = canvas.height - floorHeight;
 
-function drawJoueur() {
-    ctx.drawImage(player, joueur.x, joueur.y, joueur.w, joueur.h);
-}
+
 
 var deathImages = [playerdeath1, playerdeath2, playerdeath3, playerdeath4];
 var currentDeathIndex = 0;

@@ -16,13 +16,13 @@ var playerwalk = "img/walk.png";
 var dashImg = new Image;
 dashImg.src = "./img/dash.jpeg"
 
-var dashSound = new Audio()
-dashSound.src = "./music/dashSound.mp3"
-dashSound.volume = 0.07
-
 var jumpSound = new Audio()
 jumpSound.src = "./music/jumpSound.mp3"
 jumpSound.volume = 0.01
+
+var dashSound = new Audio()
+dashSound.src = "./music/dashSound.mp3"
+dashSound.volume = 0.07
 
 var joueur = {
     x: 10,
@@ -37,8 +37,8 @@ var joueur = {
 var baseHeight = canvas.height - floorHeight;
 
 var cible = {
-    x: canvas.width / 2 + 550,
-    y: canvas.height / 2 - 200,
+    x: canvas.width / 2 + 700,
+    y: canvas.height / 2 - 500,
     w: 200,
     h: 200,
     color: "blue",
@@ -131,6 +131,7 @@ function checkWindowDimensions() {
 }
 
 // Dash Cooldown
+
 var dashCooldown = {
     x: 1700,
     y: 850,

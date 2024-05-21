@@ -1,4 +1,5 @@
 [
-    {"x": 200, "y": 0, "width": 300, "height": 50, "color": "pink", "speed": 3},
-    {"x": 200, "y": 500, "width": 300, "height": 50, "color": "pink", "speed": 3}
+    {"x":950,"y":570,"width":300,"height":50,"color":"red","speed":0},
+    {"x":0,"y":750,"width":1900,"height":50,"color":"red","speed":0}
 ]
+
