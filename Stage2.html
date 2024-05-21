@@ -29,14 +29,14 @@
         var walls = [];
 
         // JSON pour deathwalls
-        fetch('/json/level2_deathwalls.json')
+        fetch('../interface-jeu/json/level2_deathwalls.json')
             .then(response => response.json())
             .then(data => {
                 deathwalls = data.map(obj => new Murs(obj.x, obj.y, obj.width, obj.height, obj.color, obj.speed));
             });
 
         // JSON pour walls
-        fetch('/json/level2_walls.json')
+        fetch('../interface-jeu/json/level2_walls.json')
             .then(response => response.json())
             .then(data => {
                 walls = data.map(obj => new Murs(obj.x, obj.y, obj.width, obj.height, obj.color, obj.speed));
