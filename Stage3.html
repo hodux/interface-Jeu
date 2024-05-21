@@ -29,14 +29,14 @@
         var walls = [];
 
         // JSON pour deathwalls
-        fetch('../aventuretri/json/level3_deathwalls.json')
+        fetch('../json/level3_deathwalls.json')
             .then(response => response.json())
             .then(data => {
                 deathwalls = data.map(obj => new Murs(obj.x, obj.y, obj.width, obj.height, obj.color, obj.speed));
             });
 
         // JSON pour walls
-        fetch('../aventuretri/json/level3_walls.json')
+        fetch('../json/level3_walls.json')
             .then(response => response.json())
             .then(data => {
                 walls = data.map(obj => new Murs(obj.x, obj.y, obj.width, obj.height, obj.color, obj.speed));
