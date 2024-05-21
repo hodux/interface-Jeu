@@ -11,12 +11,10 @@ canvas.style.display = "block";
 canvas.style.margin = "auto"
 document.body.appendChild(canvas);
 var gravity = 0.5;
-var player = "img/pixel-art-asian-songkran-character-png.png";
-var playerwalk = "img/pixel-art-asian-songkran-character-walk.png";
-var playerdeath1 = "img/pixel-art-asian-songkran-character-death1.png";
-var playerdeath2 = "img/pixel-art-asian-songkran-character-death2.png";
-var playerdeath3 = "img/pixel-art-asian-songkran-character-death3.png";
-var playerdeath4 = "img/pixel-art-asian-songkran-character-death4.png";
+var player = "img/normalTri.png";
+var playerwalk = "img/walk.png";
+
+
 var music = new Audio()
 music.src = "./music/gameMusic.mp3"
 music.volume = 0.03
@@ -340,7 +338,6 @@ function game() {
     animatePlayer();
     doubleJump();
     dashMove();
-    music.play();
     requestAnimationFrame(game);
 }
 
