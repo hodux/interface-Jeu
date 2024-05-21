@@ -13,11 +13,13 @@ document.body.appendChild(canvas);
 var gravity = 0.5;
 var player = "img/normalTri.png";
 var playerwalk = "img/walk.png";
+var dashImg = new Image;
+dashImg.src = "./img/dash.jpeg"
 
+var dashSound = new Audio()
+dashSound.src = "./music/dashSound.mp3"
+dashSound.volume = 0.07
 
-var music = new Audio()
-music.src = "./music/gameMusic.mp3"
-music.volume = 0.03
 var jumpSound = new Audio()
 jumpSound.src = "./music/jumpSound.mp3"
 jumpSound.volume = 0.01
@@ -129,11 +131,23 @@ function checkWindowDimensions() {
 }
 
 // Dash Cooldown
-var dashCooldown = new Murs(1600, 750, 100, 100, "yellow", 0)
+var dashCooldown = {
+    x: 1700,
+    y: 850,
+    w: 100,
+    h: 100,
+    color: "yellow",
+}
+
+function drawDashCooldown() {
+    ctx.fillStyle = dashCooldown.color
+    ctx.drawImage(dashImg, dashCooldown.x, dashCooldown.y, dashCooldown.w, dashCooldown.h)
+}
+
 function drawMur() {
     // affiche dash cooldown 
     if (canDash) {
-        dashCooldown.draw();
+        drawDashCooldown();
     }
 
     if (deathwalls && deathwalls.length > 0) {
@@ -237,6 +251,7 @@ function resetDash() {
 function dashMove() {
     if (keyDown[16] && canDash && keyDown[65]) {
         console.log("Dash attemp")
+        dashSound.play();
         function movePlayer() {
             if (joueur.x > 0) {
                 joueur.x -= 50;
@@ -251,6 +266,7 @@ function dashMove() {
         setTimeout(resetDash, 3000);
     } else if (keyDown[16] && canDash && keyDown[68]) {
         console.log("Dash attemp")
+        dashSound.play();
         function movePlayer() {
             if (joueur.x < canvas.width - joueur.w) {
                 joueur.x += 50;
