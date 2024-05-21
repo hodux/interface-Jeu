@@ -3,7 +3,7 @@ var currentTranslation;
 async function translatePage(language) {
     currentTranslation = language;
 
-    const response = await fetch("../interface-jeu/json/translations.json");
+    const response = await fetch("../aventuretri/json/translations.json");
     const translations = await response.json();
     
     document.querySelectorAll('[data-translate]').forEach(element => {
