@@ -5,7 +5,7 @@ var GameTime = 30000;
 canvas.width = window.innerWidth - 50;
 canvas.height = window.innerHeight - 50;
 canvas.style.border = "10px white solid";
-canvas.style.backgroundImage = "url('img/heaven.jpg')";
+canvas.style.backgroundImage = "url('../img/heaven.jpg')";
 canvas.style.display = "block";
 canvas.style.margin = "auto";
 canvas.style.backgroundSize = "100% 100%"
@@ -14,12 +14,12 @@ var ImgJoueur = new Image();
 var gravity = 0.5;
 var player = new Image();
 
-var playerdeath1 = "img/death1.png";
-var playerdeath2 = "img/death2.png";
-var playerdeath3 = "img/death3.png";
-var playerdeath4 = "img/death4.png";
+var playerdeath1 = "../img/death1.png";
+var playerdeath2 = "../img/death2.png";
+var playerdeath3 = "../img/death3.png";
+var playerdeath4 = "../img/death4.png";
 var music = new Audio()
-music.src = "./music/gameOver.mp3"
+music.src = "../music/gameOver.mp3"
 music.volume = 0.05
 
 var isMusicPlaying = false;

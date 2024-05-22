@@ -11,17 +11,17 @@ canvas.style.display = "block";
 canvas.style.margin = "auto"
 document.body.appendChild(canvas);
 var gravity = 0.5;
-var player = "img/normalTri.png";
-var playerwalk = "img/walk.png";
+var player = "../img/normalTri.png";
+var playerwalk = "../img/walk.png";
 var dashImg = new Image;
-dashImg.src = "./img/dash.jpeg"
+dashImg.src = "../img/dash.jpeg"
 
 var jumpSound = new Audio()
-jumpSound.src = "./music/jumpSound.mp3"
+jumpSound.src = "../music/jumpSound.mp3"
 jumpSound.volume = 0.01
 
 var dashSound = new Audio()
-dashSound.src = "./music/dashSound.mp3"
+dashSound.src = "../music/dashSound.mp3"
 dashSound.volume = 0.07
 
 var joueur = {
@@ -121,7 +121,6 @@ function checkWindowDimensions() {
     }
 } 
 
-
 // J'ai voulu récupérer les traductions JSON pour traduire les erreurs, mais 
 // l'alerte se répétait à l'infini, ce qui empêchait l'utilisateur de lire.
 
@@ -150,8 +149,6 @@ function checkWindowDimensions() {
 //         });
 //     }
 // }
-
-
 
 
 // Dash Cooldown
@@ -328,7 +325,7 @@ function collision(a, b) {
 
 function deathCollision (deathMur) {
     if (collision(joueur, deathMur)) {
-        window.location.href="GameOver1.html";
+        window.location.href="../html/GameOver1.html";
     }
 }
 
