@@ -12,7 +12,6 @@ canvas.style.margin = "auto"
 document.body.appendChild(canvas);
 var gravity = 0.5;
 var player = "../img/normalTri.png";
-var playerwalk = "../img/walk.png";
 var dashImg = new Image;
 dashImg.src = "../img/dash.jpeg"
 
@@ -213,19 +212,24 @@ document.addEventListener("keyup", function (e) {
 var animationSpeed = 200;
 var lastAnimationTime = 0;
 
+var playerImage = new Image();
+playerImage.src = "../img/normalTri.png";
+var playerWalkImage = new Image();
+playerWalkImage.src = "../img/walk.png";
+
 function animatePlayer() {
     if (65 in keyDown || 68 in keyDown) {
         var currentTime = Date.now();
         if (currentTime - lastAnimationTime > animationSpeed) {
-            if (ImgJoueur.src.endsWith(player)) {
-                ImgJoueur.src = playerwalk;
+            if (ImgJoueur.src === playerImage.src) {
+                ImgJoueur.src = playerWalkImage.src;
             } else {
-                ImgJoueur.src = player;
+                ImgJoueur.src = playerImage.src;
             }
             lastAnimationTime = currentTime;
         }
     } else {
-        ImgJoueur.src = player;
+        ImgJoueur.src = playerImage.src;
     }
 }
 
