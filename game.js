@@ -67,44 +67,92 @@ function Murs(x, y, width, height, color, speed) {
     }
 }
 
-async function getTranslations() {
-    const response = await fetch("../json/translations.json");
-    const translations = await response.json();
-
-    return translations
-}
-
-// Alerte pour la fenetre, le jeu n'est pas RWD
 function checkWindowDimensions() {
-    if (window.screenTop && window.screenY) {
-        var language = sessionStorage.getItem("currentTranslation")
-        getTranslations().then((translations) => {
+    var language = sessionStorage.getItem("currentTranslation")
+    const translations = {
+        'en': {
+            title: "Oops...",
+            text: "Your page isn't the right dimensions!",
+            confirmButtonText: "Try again?",
+            footerText: '<a href="Rules.html">Why do I have this issue?</a>'
+        },
+        'es': {
+            title: "¡Ups...",
+            text: "¡Las dimensiones de tu página no son correctas!",
+            confirmButtonText: "¿Intentar de nuevo?",
+            footerText: '<a href="Rules.html">¿Por qué tengo este problema?</a>'
+        },
+        'fr': {
+            title: "Oups...",
+            text: "Les dimensions de votre page ne sont pas correctes!",
+            confirmButtonText: "Réessayer ?",
+            footerText: '<a href="Rules.html">Pourquoi ai-je ce problème ?</a>'
+        },        
+        'zh': {
+            title: "糟糕...",
+            text: "您的頁面尺寸不正確！",
+            confirmButtonText: "重試？",
+            footerText: '<a href="Rules.html">為什麼會出現這個問題？</a>'
+        }
+        
+        
+    };
+    const translation = translations[language];
 
-            Swal.fire({
-                icon: "error",
-                title: translations[language].welcome,
-                text: "Your page isn't in fullscreen!",
-                confirmButtonColor: "#3085d6",
-                confirmButtonText: "Try again?",
-                allowOutsideClick: false,
-                backdrop: `rgba(255, 42, 0, 1)`,
-                footer: '<a href="Rules.html">Why do I have this issue?</a>'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        location.reload();
-                    }
-                });
-                setTimeout(() => {
-                }, timeout);
-                console.log("wait")
-
+    if (window.innerWidth > 1920 || window.innerHeight > 1080 || window.innerHeight < 1080 || window.innerWidth < 1080) {
+        Swal.fire({
+            icon: "error",
+            title: translation.title,
+            text: translation.text,
+            confirmButtonColor: "#3085d6",
+            allowOutsideClick: false,
+            allowEscapeKey: false,
+            confirmButtonText: translation.confirmButtonText,
+            backdrop: `rgba(255, 42, 0, 1)`,
+            footer: translation.footerText
+        }).then((result) => {
+            if (result.isConfirmed) {
+                location.reload();
+            }
         });
+        setTimeout(() => {
+        }, timeout);
+
+    }
+} 
 
 
-        
-        
-    } 
-}
+// J'ai voulu récupérer les traductions JSON pour traduire les erreurs, mais 
+// l'alerte se répétait à l'infini, ce qui empêchait l'utilisateur de lire.
+
+// async function getTranslations(callback) {
+//     const response = await fetch('../json/translations.json');
+//     const translations = await response.json();
+//     callback(translations);
+// }
+
+// function checkWindowDimensions(translations) {
+//     if (window.screenTop && window.screenY) {
+//         var language = sessionStorage.getItem("currentTranslation");
+//         Swal.fire({
+//             icon: "error",
+//             title: translations[language].welcome,
+//             text: translations[language].fullscreenAlertText,
+//             confirmButtonColor: "#3085d6",
+//             confirmButtonText: translations[language].tryAgainText,
+//             allowOutsideClick: false,
+//             backdrop: `rgba(255, 42, 0, 1)`,
+//             footer: '<a href="Rules.html">' + translations[language].footerText + '</a>'
+//         }).then((result) => {
+//             if (result.isConfirmed) {
+//                 location.reload();
+//             }
+//         });
+//     }
+// }
+
+
+
 
 // Dash Cooldown
 
