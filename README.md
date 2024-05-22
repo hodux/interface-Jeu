@@ -12,6 +12,7 @@ _En cadre avec le cours d'interfaces humain machines pour **Création d'un jeu a
 ## Jouer au jeu
 Pour installer et jouer au jeu, veuillez...
 - Installer avec `git clone https://github.com/hodux/interface-Jeu.git`
+- Ouvrir le dossier interface-Jeu dans Visual Studio
 - Ouvrir `Menu.html` avec [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer)
 > [!CAUTION]
 > Le jeu n'est pas RWD, il DOIT être jouer sur un écran de 1920x1080 en fullscreen (utiliser F11) pour empêcher les erreurs. Ceci est affiché dans les règles, vous ne pourrez pas jouer au jeu sans le faire.
